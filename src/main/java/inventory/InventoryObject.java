@@ -1,3 +1,5 @@
+package inventory;
+
 public class InventoryObject {
     private String name;
     private double weight;
@@ -10,7 +12,7 @@ public class InventoryObject {
     }
 
     public InventoryObject(String name, double weight) {
-        this(name,weight,1);
+        this(name, weight, 1);
     }
 
     public String getName() {
@@ -25,12 +27,27 @@ public class InventoryObject {
         this.count++;
     }
 
+    public void removeOneToCount() {
+        this.count--;
+    }
+
     public int getCount() {
         return count;
     }
 
-    public void showItem()
-    {
-        System.out.printf("Item: %s, weight: %.2f, count: %d\n", name,weight,count);
+    public String showItem() {
+        return String.format("Item: %s, weight: %.2f, count: %d\n", name, weight, count);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InventoryObject that = (InventoryObject) o;
+
+        if (Double.compare(that.weight, weight) != 0) return false;
+        return name.equals(that.name);
+    }
+
 }
