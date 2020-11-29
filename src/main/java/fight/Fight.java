@@ -6,7 +6,7 @@ import exceptions.NoEmptySlotException;
 import npc.Bandit;
 import npc.Enemy;
 
-public class Fight {
+public final class Fight {
     private final Hero hero;
     private final Enemy enemy;
 

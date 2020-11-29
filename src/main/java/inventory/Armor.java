@@ -1,6 +1,6 @@
 package inventory;
 
-public class Armor {
+public final class Armor {
     private ArmorPart head;
     private ArmorPart leftArm;
     private ArmorPart rightArm;
