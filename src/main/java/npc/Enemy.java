@@ -1,8 +1,8 @@
 package npc;
 
-import utils.DamageReceived;
+import utils.Fightable;
 
-public abstract class Enemy implements DamageReceived {
+public abstract class Enemy implements Fightable {
     private String name;
     private int health;
     private int damage;
@@ -13,13 +13,12 @@ public abstract class Enemy implements DamageReceived {
         this.damage = damage;
     }
 
-    public boolean isDamageLethal()
-    {
-        return health<=0;
+    public boolean isDamageLethal() {
+        return health <= 0;
     }
 
-    public void changeHeath(int dmg){
-        health -=dmg;
+    public void changeHeath(int dmg) {
+        health -= dmg;
     }
 
     public int getHealth() {
@@ -28,8 +27,8 @@ public abstract class Enemy implements DamageReceived {
 
     @Override
     public int dealDamage() {
-        double bonus = (Math.random()*(20)+1)/100;
-        return (int) (bonus*damage)+damage;
+        double bonus = (Math.random() * (20) + 1) / 100;
+        return (int) (bonus * damage) + damage;
     }
 
 

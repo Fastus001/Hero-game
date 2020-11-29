@@ -1,17 +1,25 @@
 package inventory;
 
-public class ArmorPart extends InventoryObject{
-    private int damageResistance;
-    private String bodyPart;
+import utils.BodyPart;
 
-    public ArmorPart(String name, double weight, int damageResistance, String bodyPart) {
+public class ArmorPart extends InventoryObject{
+    private final int damageResistance;
+    private final BodyPart bodyPart;
+
+    public ArmorPart(String name, double weight, int damageResistance, BodyPart bodyPart) {
         super(name, weight);
         this.damageResistance = damageResistance;
         this.bodyPart = bodyPart;
     }
 
-    public String getBodyPart() {
+    public BodyPart getBodyPart() {
         return bodyPart;
+    }
+
+
+    public  String getBodyPartName()
+    {
+        return bodyPart.name();
     }
 
     public int getDamageResistance() {

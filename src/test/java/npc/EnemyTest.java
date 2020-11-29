@@ -1,5 +1,6 @@
 package npc;
 
+import exceptions.GameOverException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ class EnemyTest {
         enemy = new Monster("Ork",25,20,"BigUnz");
     }
     @Test
-    void isDamageLethal() {
+    void isDamageLethal() throws GameOverException {
         enemy.getDamage(25);
 
         assertTrue(enemy.isDamageLethal());

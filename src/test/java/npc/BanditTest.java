@@ -1,5 +1,6 @@
 package npc;
 
+import exceptions.GameOverException;
 import inventory.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class BanditTest {
                 new Weapon("Axe",10,15));
     }
     @Test
-    void getDamage() {
+    void getDamage() throws GameOverException {
         enemy.getDamage(41);
         assertEquals(-1,enemy.getHealth());
     }

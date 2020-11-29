@@ -35,6 +35,8 @@ public abstract class InventoryObject {
         return count;
     }
 
+
+
     public String showItem() {
         return String.format("Item: %s, weight: %.2f, count: %d\n", name, weight, count);
     }
@@ -49,5 +51,4 @@ public abstract class InventoryObject {
         if (Double.compare(that.weight, weight) != 0) return false;
         return name.equals(that.name);
     }
-
 }

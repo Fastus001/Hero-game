@@ -1,22 +1,25 @@
 package character;
 
+import exceptions.GameOverException;
+import exceptions.NoEmptySlotException;
 import inventory.Food;
 import inventory.InventoryObject;
-import utils.DamageReceived;
+import utils.Fightable;
+import utils.Race;
 
-public class Hero implements DamageReceived {
-    private static final double MAX_LOAD = 100;
-    private static final int DAMAGE = 5;
-    private String name;
-    private String race;
+public class Hero implements Fightable {
+    public static double MAX_LOAD = 100;
+    public static int DAMAGE = 10;
+    private final String name;
+    private final Race race;
     private int currentHealth;
-    private InventoryObject[] inventory = new InventoryObject[10];
+    private final InventoryObject[] inventory = new InventoryObject[10];
     private boolean overloaded;
 
-    public Hero(String name, String race) {
+    public Hero(String name, Race race) {
         this.name = name;
         this.race = race;
-        this.currentHealth = 100;
+        this.currentHealth = race.getHealth();
     }
 
     public void consumeFood(int index)
@@ -39,7 +42,7 @@ public class Hero implements DamageReceived {
         }
     }
 
-    public void addNewItem(InventoryObject io) {
+    public void addNewItem(InventoryObject io) throws NoEmptySlotException {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] != null && inventory[i].equals(io)) {
                 inventory[i].addOneToCount();
@@ -54,7 +57,7 @@ public class Hero implements DamageReceived {
                 return;
             }
         }
-        System.out.println("The new item can't be added to inventory!");
+        throw new NoEmptySlotException();
     }
 
     private void checkOverload() {
@@ -67,37 +70,36 @@ public class Hero implements DamageReceived {
             overloaded = sum > MAX_LOAD;
         }
 
-    public InventoryObject getItem(int i) {
-        return inventory[i];
-    }
-
     public void addHealth(int heal)
     {
         this.currentHealth +=heal;
+    }
+
+    public InventoryObject getItem(int i) {
+        return inventory[i];
     }
 
     public InventoryObject[] getInventory() {
         return inventory;
     }
 
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public boolean isDead() {
+        return currentHealth<=0;
+    }
+
     @Override
-    public void getDamage(int dmg) {
+    public void getDamage(int dmg) throws GameOverException {
         currentHealth-=dmg;
         if(currentHealth<1)
-            System.out.println("Hero is dead, end of game!");
+            throw new GameOverException();
     }
 
     @Override
     public int dealDamage() {
         return DAMAGE;
-    }
-
-    public int getCurrentHealth() {
-        return currentHealth;
-    }
-
-
-    public boolean isDead() {
-        return currentHealth<=0;
     }
 }

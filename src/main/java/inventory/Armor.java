@@ -7,23 +7,44 @@ public class Armor {
     private ArmorPart leftLeg;
     private ArmorPart rightLeg;
     private ArmorPart torso;
+    private int damageResistance = 0;
 
     public ArmorPart equipArmour(ArmorPart toAssign)
     {
         ArmorPart toReturn = null;
-        switch (toAssign.getBodyPart())
+        damageResistance+=toAssign.getDamageResistance();
+        switch (toAssign.getBodyPartName())
         {
-            case "Head":
+            case "HEAD":
                 toReturn = this.head;
+
                 this.head = toAssign;
                 break;
-//            case "Left arm":return checkSlot(this.leftArm,toAssign);
-//            case "Right arm":return checkSlot(this.rightArm,toAssign);
-//            case "Left leg":return checkSlot(this.leftLeg,toAssign);
-//            case "Right leg":return checkSlot(this.rightLeg,toAssign);
-//            case "Torso":return checkSlot(this.torso,toAssign);
+            case "LEFT_ARM":
+                toReturn = this.leftArm;
+                this.leftArm = toAssign;
+                break;
+            case "RIGHT_ARM":
+                toReturn = this.rightArm;
+                this.rightArm = toAssign;
+                break;
+            case "LEFT_LEG":
+                toReturn = this.leftLeg;
+                this.leftLeg = toAssign;
+                break;
+            case "RIGHT_LEG":
+                toReturn = this.rightLeg;
+                this.rightLeg = toAssign;
+                break;
+            case "TORSO":
+                toReturn = this.torso;
+                this.torso = toAssign;
+                break;
             default:
                 System.out.println("Armor element not match to any location!!");
+        }
+        if(toReturn!=null){
+            damageResistance-=toReturn.getDamageResistance();
         }
         return toReturn;
     }
@@ -51,5 +72,10 @@ public class Armor {
 
     public ArmorPart getTorso() {
         return torso;
+    }
+
+    public int getDamageResistance() {
+
+        return damageResistance;
     }
 }

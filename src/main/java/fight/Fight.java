@@ -1,20 +1,21 @@
 package fight;
 
 import character.Hero;
+import exceptions.GameOverException;
+import exceptions.NoEmptySlotException;
 import npc.Bandit;
 import npc.Enemy;
 
 public class Fight {
-    private Hero hero;
-    private Enemy enemy;
+    private final Hero hero;
+    private final Enemy enemy;
 
     public Fight(Hero hero, Enemy enemy) {
         this.hero = hero;
         this.enemy = enemy;
     }
 
-    public void executeFight()
-    {
+    public void executeFight() throws GameOverException {
         while (true)
         {
             enemy.getDamage(hero.dealDamage());
@@ -22,7 +23,11 @@ public class Fight {
             {
                 if(enemy instanceof Bandit)
                 {
-                    hero.addNewItem(((Bandit) enemy).dropWeapon());
+                    try {
+                        hero.addNewItem(((Bandit) enemy).dropWeapon());
+                    } catch (NoEmptySlotException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             }
