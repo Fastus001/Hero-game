@@ -2,9 +2,11 @@ package character;
 
 import inventory.Food;
 import inventory.InventoryObject;
+import utils.DamageReceived;
 
-public class Hero {
+public class Hero implements DamageReceived {
     private static final double MAX_LOAD = 100;
+    private static final int DAMAGE = 5;
     private String name;
     private String race;
     private int currentHealth;
@@ -15,11 +17,6 @@ public class Hero {
         this.name = name;
         this.race = race;
         this.currentHealth = 100;
-    }
-
-    public void receiveDamage(int damage)
-    {
-        this.currentHealth -= damage;
     }
 
     public void consumeFood(int index)
@@ -81,5 +78,26 @@ public class Hero {
 
     public InventoryObject[] getInventory() {
         return inventory;
+    }
+
+    @Override
+    public void getDamage(int dmg) {
+        currentHealth-=dmg;
+        if(currentHealth<1)
+            System.out.println("Hero is dead, end of game!");
+    }
+
+    @Override
+    public int dealDamage() {
+        return DAMAGE;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+
+    public boolean isDead() {
+        return currentHealth<=0;
     }
 }

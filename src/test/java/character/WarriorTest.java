@@ -15,14 +15,14 @@ class WarriorTest {
     public void setup()
     {
         warrior = new Warrior("Wolf", "człek",
-                new Weapon("Miecz", 10, 1,25),
+                new Weapon("Miecz", 10,25),
                 new Armor());
     }
 
     @Test
     public void testEquipWeapon()
     {
-        warrior.addNewItem(new Weapon("Topór", 15,1,34));
+        warrior.addNewItem(new Weapon("Topór", 15,34));
         warrior.assignWeapon(0);
         warrior.showEquipment();
         warrior.assignWeapon(1);
@@ -37,8 +37,13 @@ class WarriorTest {
 
         warrior.assignArmorPart(0);
         warrior.showEquipment();
+    }
 
-
+    @Test
+    public void testReceivedLethalDamage()
+    {
+        warrior.getDamage(100);
+        assertEquals(0,warrior.getCurrentHealth());
     }
 
 }

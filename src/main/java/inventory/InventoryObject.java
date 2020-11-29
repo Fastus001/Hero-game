@@ -1,6 +1,6 @@
 package inventory;
 
-public class InventoryObject {
+public abstract class InventoryObject {
     private String name;
     private double weight;
     private int count;

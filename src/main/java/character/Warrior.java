@@ -37,5 +37,8 @@ public class Warrior extends Hero{
         }
     }
 
-
+    @Override
+    public int dealDamage() {
+        return weapon.getDamagePoints();
+    }
 }
