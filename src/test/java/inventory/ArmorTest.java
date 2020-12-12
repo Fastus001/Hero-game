@@ -19,20 +19,20 @@ class ArmorTest {
     @Test
     public void testArmorClass()
     {
-        assertNull(armor.equipArmour(new ArmorPart("Hełm",15,2, BodyPart.HEAD)));
-        InventoryObject armourPart = armor.equipArmour(new ArmorPart("Kask", 125, 2, BodyPart.HEAD));
+        assertNull(armor.equipArmorAdvanced(new ArmorPart("Hełm",15,2, BodyPart.HEAD)));
+        InventoryObject armourPart = armor.equipArmorAdvanced(new ArmorPart("Kask", 125, 2, BodyPart.HEAD));
         assertEquals("Hełm",armourPart.getName());
     }
 
     @Test
     public void testEquipEachPartOfArmor()
     {
-        armor.equipArmour(new ArmorPart("Helmet", 10, 1,BodyPart.HEAD));
-        armor.equipArmour(new ArmorPart("Left arm", 11, 2,BodyPart.LEFT_ARM));
-        armor.equipArmour(new ArmorPart("Right arm", 20, 3,BodyPart.RIGHT_ARM));
-        armor.equipArmour(new ArmorPart("Lef leg", 30, 4,BodyPart.LEFT_LEG));
-        armor.equipArmour(new ArmorPart("Right leg", 21, 5,BodyPart.RIGHT_LEG));
-        armor.equipArmour(new ArmorPart("Torso", 55, 6,BodyPart.TORSO));
+        armor.equipArmorAdvanced(new ArmorPart("Helmet", 10, 1,BodyPart.HEAD));
+        armor.equipArmorAdvanced(new ArmorPart("Left arm", 11, 2,BodyPart.LEFT_ARM));
+        armor.equipArmorAdvanced(new ArmorPart("Right arm", 20, 3,BodyPart.RIGHT_ARM));
+        armor.equipArmorAdvanced(new ArmorPart("Lef leg", 30, 4,BodyPart.LEFT_LEG));
+        armor.equipArmorAdvanced(new ArmorPart("Right leg", 21, 5,BodyPart.RIGHT_LEG));
+        armor.equipArmorAdvanced(new ArmorPart("Torso", 55, 6,BodyPart.TORSO));
 
         assertAll(()->assertEquals("Left arm",armor.getLeftArm().getName()),
                 ()->assertEquals(55,armor.getTorso().getWeight()),
@@ -44,9 +44,15 @@ class ArmorTest {
     @DisplayName("Show be after change one armor part on another")
     public void shouldBeAfterChangingArmor()
     {
-        armor.equipArmour(new ArmorPart("Helmet", 10, 3,BodyPart.HEAD));
-        armor.equipArmour(new ArmorPart("Helmet", 10, 1,BodyPart.HEAD));
+        armor.equipArmorAdvanced(new ArmorPart("Helmet", 10, 3,BodyPart.HEAD));
+        armor.equipArmorAdvanced(new ArmorPart("Helmet", 10, 1,BodyPart.HEAD));
         assertEquals(1,armor.getDamageResistance());
     }
 
+    @Test
+    void equipArmorAdvanced() {
+        armor.equipArmorAdvanced(new ArmorPart("Helmet34", 10, 3,BodyPart.HEAD));
+        ArmorPart helmet = armor.equipArmorAdvanced(new ArmorPart("Helmet", 10, 1, BodyPart.HEAD));
+        assertEquals(1,armor.getDamageResistance());
+    }
 }

@@ -18,13 +18,12 @@ public class Sorcerer extends Hero{
     }
 
     public void addNewSpell(Spell spell){
-        if(spellBook.contains(spell)){
-            System.out.println("Spell is already in your spell book.");
-        }else{
-            spellBook.add(spell);
+        if(spellBook.add(spell)){
             super.addDamage(spell.getAddDamage());
             super.addHealth(spell.getAddHealth());
             this.resistance+= spell.getImmunePts();
+        }else{
+            System.out.println("Spell is already in your spell book.");
         }
     }
 

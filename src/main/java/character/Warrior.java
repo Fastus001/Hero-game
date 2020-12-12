@@ -32,7 +32,7 @@ public class Warrior extends Hero{
     public void assignArmorPart(int index) throws InvalidTypeException {
         if(super.getItem(index) instanceof ArmorPart)
         {
-            this.armor.equipArmour((ArmorPart) super.getItem(index));
+            this.armor.equipArmorAdvanced((ArmorPart) super.getItem(index));
             super.getInventory()[index] = null;
         }else{
             throw new InvalidTypeException("It's no a armor!");

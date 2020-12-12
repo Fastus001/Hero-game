@@ -1,81 +1,47 @@
 package inventory;
 
+import utils.BodyPart;
+
+import java.util.Map;
+import java.util.TreeMap;
+
 public final class Armor {
-    private ArmorPart head;
-    private ArmorPart leftArm;
-    private ArmorPart rightArm;
-    private ArmorPart leftLeg;
-    private ArmorPart rightLeg;
-    private ArmorPart torso;
+    private Map<BodyPart,ArmorPart> armor = new TreeMap<>();
     private int damageResistance = 0;
 
-    public ArmorPart equipArmour(ArmorPart toAssign)
-    {
-        ArmorPart toReturn = null;
-        damageResistance+=toAssign.getDamageResistance();
-        switch (toAssign.getBodyPartName())
-        {
-            case "HEAD":
-                toReturn = this.head;
-
-                this.head = toAssign;
-                break;
-            case "LEFT_ARM":
-                toReturn = this.leftArm;
-                this.leftArm = toAssign;
-                break;
-            case "RIGHT_ARM":
-                toReturn = this.rightArm;
-                this.rightArm = toAssign;
-                break;
-            case "LEFT_LEG":
-                toReturn = this.leftLeg;
-                this.leftLeg = toAssign;
-                break;
-            case "RIGHT_LEG":
-                toReturn = this.rightLeg;
-                this.rightLeg = toAssign;
-                break;
-            case "TORSO":
-                toReturn = this.torso;
-                this.torso = toAssign;
-                break;
-            default:
-                System.out.println("Armor element not match to any location!!");
-        }
-        if(toReturn!=null){
-            damageResistance-=toReturn.getDamageResistance();
-        }
-        return toReturn;
+    public ArmorPart equipArmorAdvanced(ArmorPart toAssign){
+        return armor.put(toAssign.getBodyPart(), toAssign);
     }
 
-
     public ArmorPart getHead() {
-        return head;
+        return armor.get(BodyPart.HEAD);
     }
 
     public ArmorPart getLeftArm() {
-        return leftArm;
+        return armor.get(BodyPart.LEFT_ARM);
     }
 
     public ArmorPart getRightArm() {
-        return rightArm;
+        return armor.get(BodyPart.RIGHT_ARM);
     }
 
     public ArmorPart getLeftLeg() {
-        return leftLeg;
+        return armor.get(BodyPart.LEFT_LEG);
     }
 
     public ArmorPart getRightLeg() {
-        return rightLeg;
+        return armor.get(BodyPart.RIGHT_LEG);
     }
 
     public ArmorPart getTorso() {
-        return torso;
+        return armor.get(BodyPart.TORSO);
     }
 
     public int getDamageResistance() {
-
-        return damageResistance;
+        return armor.values()
+                .stream()
+                .map(ArmorPart::getDamageResistance)
+                .reduce(Integer::sum)
+                .orElseThrow();
     }
 }
