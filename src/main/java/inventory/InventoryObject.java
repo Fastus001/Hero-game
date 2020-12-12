@@ -1,8 +1,8 @@
 package inventory;
 
 public abstract class InventoryObject {
-    private String name;
-    private double weight;
+    private final String name;
+    private final double weight;
     private int count;
 
     public InventoryObject(String name, double weight, int count) {

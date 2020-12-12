@@ -9,7 +9,7 @@ import utils.Race;
 
 public class Hero implements Fightable {
     public static double MAX_LOAD = 100;
-    public static int DAMAGE = 10;
+    public  int damage = 10;
     private final String name;
     private final Race race;
     private int currentHealth;
@@ -20,6 +20,10 @@ public class Hero implements Fightable {
         this.name = name;
         this.race = race;
         this.currentHealth = race.getHealth();
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public void consumeFood(int index)
@@ -40,6 +44,10 @@ public class Hero implements Fightable {
                 System.out.print((i + 1) + " " + inventory[i].showItem());
             }
         }
+    }
+
+    public void addDamage(int dmg){
+        this.damage+=dmg;
     }
 
     public void addNewItem(InventoryObject io) throws NoEmptySlotException {
@@ -91,6 +99,8 @@ public class Hero implements Fightable {
         return currentHealth<=0;
     }
 
+
+
     @Override
     public void getDamage(int dmg) throws GameOverException {
         currentHealth-=dmg;
@@ -100,6 +110,6 @@ public class Hero implements Fightable {
 
     @Override
     public int dealDamage() {
-        return DAMAGE;
+        return damage;
     }
 }
