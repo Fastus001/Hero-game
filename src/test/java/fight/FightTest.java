@@ -64,17 +64,4 @@ class FightTest {
         assertEquals(25,hero.dealDamage());
     }
 
-    @Test
-    public void testGameOver()
-    {
-        Hero hero = new Warrior("tom", Race.HUMAN,
-                new Weapon("Sword",10,2),new Armor());
-        Enemy enemy = new Bandit("Bandit",25,10,
-                new Weapon("axe",10,15));
-        Fight fight = new Fight(hero,enemy);
-
-
-        assertThrows(GameOverException.class, fight::executeFight);
-    }
-
 }

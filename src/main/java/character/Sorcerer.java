@@ -35,6 +35,15 @@ public class Sorcerer extends Hero{
     }
 
     @Override
+    public String toString() {
+        return "Sorcerer{" +
+                "damage=" + damage +
+                ", resistance=" + resistance +
+                ", spellBook=" + spellBook +
+                '}';
+    }
+
+    @Override
     public void getDamage(int dmg) throws GameOverException {
         int finalDamage = dmg - getResistance();
         super.getDamage(Math.max(finalDamage, 0));

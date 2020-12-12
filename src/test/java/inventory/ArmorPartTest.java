@@ -22,6 +22,6 @@ class ArmorPartTest {
 
     @Test
     void getDamageResistance() {
-        assertEquals(8,armorPart.getDamageResistance());
+        assertEquals(8,armorPart.getResistance());
     }
 }

@@ -43,12 +43,6 @@ class WarriorTest {
     }
 
     @Test
-    public void testReceivedLethalDamage() throws GameOverException {
-
-        assertThrows(GameOverException.class,()->warrior.getDamage(100));
-    }
-
-    @Test
     public void testReceivedDamageReducedByArmor()
     {
 

@@ -22,7 +22,7 @@ public class ArmorPart extends InventoryObject{
         return bodyPart.name();
     }
 
-    public int getDamageResistance() {
+    public int getResistance() {
         return damageResistance;
     }
 

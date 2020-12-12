@@ -1,5 +1,6 @@
 package character;
 
+import exceptions.GameOverException;
 import exceptions.NoEmptySlotException;
 import inventory.Weapon;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,12 @@ class HeroTest {
         Hero hero = new Hero("Tom", Race.DWARF);
 
         assertThat(hero.getCurrentHealth()).isEqualTo(120);
+    }
+
+    @Test
+    public void testReceivedLethalDamage() throws GameOverException {
+        Hero hero = new Hero("Tom", Race.HUMAN);
+        assertThrows(GameOverException.class,()->hero.getDamage(100));
     }
 
 }

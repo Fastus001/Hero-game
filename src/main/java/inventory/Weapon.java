@@ -11,4 +11,11 @@ public class Weapon extends InventoryObject{
     public int getDamagePoints() {
         return damagePoints;
     }
+
+    @Override
+    public String toString() {
+        return super.getName() +
+                ", dmg=" + damagePoints +
+                '}';
+    }
 }

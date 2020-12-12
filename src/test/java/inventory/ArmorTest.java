@@ -34,8 +34,8 @@ class ArmorTest {
         armor.equipArmorAdvanced(new ArmorPart("Right leg", 21, 5,BodyPart.RIGHT_LEG));
         armor.equipArmorAdvanced(new ArmorPart("Torso", 55, 6,BodyPart.TORSO));
 
-        assertAll(()->assertEquals("Left arm",armor.getLeftArm().getName()),
-                ()->assertEquals(55,armor.getTorso().getWeight()),
+        assertAll(()->assertEquals("Left arm",armor.getBodyPart(BodyPart.LEFT_ARM).getName()),
+                ()->assertEquals(55,armor.getBodyPart(BodyPart.TORSO).getWeight()),
                 ()->assertEquals(21,armor.getDamageResistance())
                 );
     }
