@@ -37,7 +37,7 @@ public abstract class InventoryObject {
 
 
     public String showItem() {
-        return String.format("Item: %s, weight: %.2f, count: %d\n", name, weight, count);
+        return String.format("Item: %s, weight: %.2f, count: %d", name, weight, count);
     }
 
     @Override

@@ -14,9 +14,7 @@ public class Trader {
     }
 
     public void showStock(){
-        for (PricedItem pi: stock.values()){
-            System.out.println(pi);
-        }
+        stock.values().forEach(System.out::println);
     }
 
     public PricedItem getPricedItem(String itemName){

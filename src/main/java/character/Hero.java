@@ -7,6 +7,9 @@ import inventory.InventoryObject;
 import utils.Fightable;
 import utils.Race;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 public class Hero implements Fightable {
     public static double MAX_LOAD = 100;
     public int damage = 10;
@@ -38,11 +41,9 @@ public class Hero implements Fightable {
     }
 
     public void showEquipment() {
-        for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null) {
-                System.out.print((i + 1) + " " + inventory[i].showItem());
-            }
-        }
+        Stream.of(inventory)
+                .map(InventoryObject::showItem)
+                .forEach(System.out::println);
     }
 
     public void addDamage(int dmg) {
@@ -67,14 +68,16 @@ public class Hero implements Fightable {
         throw new NoEmptySlotException();
     }
 
+    public double getLoadFactor(){
+        return Stream.of(inventory)
+                .filter(Objects::nonNull)
+                .map(i->i.getCount()*i.getWeight())
+                .reduce(Double::sum)
+                .orElseThrow();
+    }
+
     private void checkOverload() {
-        double sum = 0;
-        for (InventoryObject inv : inventory) {
-            if (inv != null) {
-                sum += inv.getWeight() * inv.getCount();
-            }
-        }
-        overloaded = sum > MAX_LOAD;
+        overloaded = getLoadFactor() > MAX_LOAD;
     }
 
     public void addHealth(int heal) {
@@ -144,11 +147,19 @@ public class Hero implements Fightable {
         return money;
     }
 
+    public Race getRace() {
+        return race;
+    }
+
     public void addMoney(int amount) {
         money += amount;
     }
 
     public void deductMoney(int amount) {
         this.money -= amount;
+    }
+
+    public boolean isOverloaded() {
+        return overloaded;
     }
 }

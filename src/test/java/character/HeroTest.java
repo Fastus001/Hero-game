@@ -18,11 +18,12 @@ class HeroTest {
 
         for (int i = 0; i < 10; i++) {
             try {
-                hero.addNewItem(new Weapon("Sword"+i, 10,15));
+                hero.addNewItem(new Weapon("Sword"+i, 15,15));
             } catch (NoEmptySlotException e) {
                 e.printStackTrace();
             }
         }
+        assertTrue(hero.isOverloaded());
         assertThrows(NoEmptySlotException.class,()->hero.addNewItem(new Weapon("Swords", 10,15)));
     }
 

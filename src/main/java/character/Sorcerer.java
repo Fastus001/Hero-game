@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 public class Sorcerer extends Hero{
     private int resistance;
-    private final Set<Spell> spellBook = new TreeSet<>();
+    private final Set<Spell> spells = new TreeSet<>();
 
     public Sorcerer(String name, Race race, int resistance) {
         super(name, race);
@@ -18,7 +18,7 @@ public class Sorcerer extends Hero{
     }
 
     public void addNewSpell(Spell spell){
-        if(spellBook.add(spell)){
+        if(spells.add(spell)){
             super.addDamage(spell.getAddDamage());
             super.addHealth(spell.getAddHealth());
             this.resistance+= spell.getImmunePts();
@@ -29,9 +29,7 @@ public class Sorcerer extends Hero{
 
     public void showAvailableSpells(){
         System.out.println("Available spell in your spell book:");
-        for(Spell spell:spellBook){
-            System.out.println(spell);
-        }
+        spells.forEach(System.out::println);
     }
 
     @Override
@@ -39,7 +37,7 @@ public class Sorcerer extends Hero{
         return "Sorcerer{" +
                 "damage=" + damage +
                 ", resistance=" + resistance +
-                ", spellBook=" + spellBook +
+                ", spellBook=" + spells +
                 '}';
     }
 

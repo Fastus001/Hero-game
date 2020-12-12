@@ -43,6 +43,10 @@ public class Warrior extends Hero{
         }
     }
 
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
     @Override
     public String toString() {
         return "Warrior{" +

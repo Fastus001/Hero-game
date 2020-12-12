@@ -14,6 +14,7 @@ import utils.BodyPart;
 import utils.Race;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class HeroRepository {
     private final Map<String,Hero> heroes = new HashMap<>();
@@ -72,4 +73,43 @@ public class HeroRepository {
     public int getSize() {
         return heroes.size();
     }
+
+    public List<Hero> getHeroesByFirstLetterOfName(String ch){
+        return heroes.keySet()
+                .stream()
+                .filter(key -> key.startsWith(ch))
+                .map(heroes::get)
+                .collect(Collectors.toList());
+    }
+
+    public List<Hero> getHeroesByRace(Race race){
+        return heroes.values()
+                .stream()
+                .filter(val->val.getRace().equals(race))
+                .collect(Collectors.toList());
+    }
+    public List<Hero> getHeroesByHP(int hp){
+        return heroes.values()
+                .stream()
+                .filter(val->val.getCurrentHealth()>hp)
+                .collect(Collectors.toList());
+    }
+
+    public List<Hero> getHeroesByWeaponName(String weaponName){
+        return heroes.values()
+                .stream()
+                .filter(val->val instanceof Warrior)
+                .filter(hero -> ((Warrior) hero).getWeapon().getName().equals(weaponName))
+                .collect(Collectors.toList());
+    }
+
+    public List<Hero> getHeroesByLoad(int min, int max){
+        return heroes.values()
+                .stream()
+                .filter(hero -> hero.getLoadFactor()>min && hero.getLoadFactor()<max)
+                .collect(Collectors.toList());
+    }
+
+
+
 }

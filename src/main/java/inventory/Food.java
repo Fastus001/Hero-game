@@ -15,6 +15,6 @@ public class Food extends InventoryObject{
     @Override
     public String toString() {
         return super.getName() +
-                "healthPoints=" + healthPoints;
+                ", healthPoints=" + healthPoints;
     }
 }
