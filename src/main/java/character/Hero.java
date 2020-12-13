@@ -41,6 +41,7 @@ public class Hero implements Fightable {
     }
 
     public void showEquipment() {
+        System.out.println("Inventory:");
         Stream.of(inventory)
                 .filter(Objects::nonNull)
                 .map(InventoryObject::showItem)
@@ -163,4 +164,5 @@ public class Hero implements Fightable {
     public boolean isOverloaded() {
         return overloaded;
     }
+
 }

@@ -18,10 +18,7 @@ public class FileService {
     }
 
     public static void saveMapToFile(List<String> map) throws URISyntaxException {
-        Path path = Paths.get(Objects.requireNonNull(FileService.class
-                .getClassLoader()
-                .getResource("map.txt"))
-                .toURI());
+        Path path = Paths.get("file.txt");
         try(var in = Files.newBufferedWriter(path))
         {
             for(String l:map){
