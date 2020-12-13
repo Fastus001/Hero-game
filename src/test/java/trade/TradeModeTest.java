@@ -54,7 +54,7 @@ class TradeModeTest {
 
     @Test
     void filterByPrice() {
-        assertEquals(3,tradeMode.filterByPrice(19, 50).size());
+        assertEquals(3,tradeMode.getByPrice(19, 50).size());
     }
 
     @Test

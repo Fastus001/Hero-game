@@ -33,7 +33,7 @@ public class TradeMode {
         }
     }
 
-    public List<PricedItem> filterByPrice(int min, int max){
+    public List<PricedItem> getByPrice(int min, int max){
         return trader.getStock()
                 .values()
                 .stream()
