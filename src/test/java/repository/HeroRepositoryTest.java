@@ -44,7 +44,7 @@ class HeroRepositoryTest {
     @Test
     void getHeroesByHP() {
         List<Hero> heroesByHP = repository.getHeroesByHP(90);
-        assertEquals(4,heroesByHP.size());
+        assertEquals(5,heroesByHP.size());
     }
 
     @Test
@@ -55,8 +55,7 @@ class HeroRepositoryTest {
 
     @Test
     void getHeroesByLoad() {
-        List<Hero> heroesByLoad = repository.getHeroesByLoad(39, 100);
-        //TODO uwzględnić wagę zbroi i broni
-        assertEquals(2,heroesByLoad.size());
+        List<Hero> heroesByLoad = repository.getHeroesByWeight(10,100);
+        assertEquals(3,heroesByLoad.size());
     }
 }

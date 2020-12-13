@@ -8,7 +8,7 @@ import inventory.ArmorPart;
 import inventory.Weapon;
 import utils.Race;
 
-public class Warrior extends Hero{
+public class Warrior extends Hero {
     private Weapon weapon;
     private Armor armor;
 
@@ -23,28 +23,36 @@ public class Warrior extends Hero{
     }
 
     public void assignWeapon(int index) throws InvalidTypeException, NoEmptySlotException {
-        if(super.getItem(index) instanceof Weapon)
-        {
+        if (super.getItem(index) instanceof Weapon) {
             addNewItem(this.weapon);
             this.weapon = (Weapon) super.getItem(index);
-            super.getInventory()[index]= null;
-        }else{
-                throw new InvalidTypeException("It's no a weapon!");
+            super.getInventory()[index] = null;
+        } else {
+            throw new InvalidTypeException("It's no a weapon!");
         }
     }
 
     public void assignArmorPart(int index) throws InvalidTypeException {
-        if(super.getItem(index) instanceof ArmorPart)
-        {
+        if (super.getItem(index) instanceof ArmorPart) {
             this.armor.equipArmorAdvanced((ArmorPart) super.getItem(index));
             super.getInventory()[index] = null;
-        }else{
+        } else {
             throw new InvalidTypeException("It's no a armor!");
         }
     }
 
     public Weapon getWeapon() {
         return weapon;
+    }
+
+    @Override
+    public double getTotalWeight() {
+        double sum = 0;
+        if (weapon != null)
+            sum += weapon.getWeight();
+        if (armor != null)
+            sum += armor.getWeight();
+        return super.getTotalWeight() + sum;
     }
 
     @Override

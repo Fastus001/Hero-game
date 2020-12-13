@@ -50,4 +50,10 @@ class HeroTest {
         assertThrows(GameOverException.class,()->hero.getDamage(100));
     }
 
+    @Test
+    void getLoadFactor() throws NoEmptySlotException {
+        Hero hero = new Hero("Tom", Race.HUMAN);
+        hero.addNewItem(new Weapon("Sword", 10,15));
+        assertEquals(10,hero.getTotalWeight());
+    }
 }

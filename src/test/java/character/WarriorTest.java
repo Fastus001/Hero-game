@@ -1,6 +1,5 @@
 package character;
 
-import exceptions.GameOverException;
 import exceptions.InvalidTypeException;
 import exceptions.NoEmptySlotException;
 import inventory.Armor;
@@ -48,4 +47,11 @@ class WarriorTest {
 
     }
 
+    @Test
+    void getLoadFactor() throws NoEmptySlotException, InvalidTypeException {
+        warrior.addNewItem(new ArmorPart("Helmet",10, 1, BodyPart.HEAD));
+        warrior.assignArmorPart(0);
+
+        assertEquals(20, warrior.getTotalWeight());
+    }
 }

@@ -9,7 +9,7 @@ public class Trader {
     private String name;
     private final Map<String, PricedItem> stock = new HashMap<>();
 
-    public void addNewItem(PricedItem pricedItem){
+    public void addItem(PricedItem pricedItem){
         stock.put(pricedItem.getItem().getName(),pricedItem);
     }
 
@@ -25,5 +25,8 @@ public class Trader {
         stock.remove(itemName);
     }
 
+    public Map<String, PricedItem> getStock() {
+        return stock;
+    }
 }
 

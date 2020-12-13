@@ -42,6 +42,7 @@ public class Hero implements Fightable {
 
     public void showEquipment() {
         Stream.of(inventory)
+                .filter(Objects::nonNull)
                 .map(InventoryObject::showItem)
                 .forEach(System.out::println);
     }
@@ -68,16 +69,16 @@ public class Hero implements Fightable {
         throw new NoEmptySlotException();
     }
 
-    public double getLoadFactor(){
+    public double getTotalWeight(){
         return Stream.of(inventory)
                 .filter(Objects::nonNull)
                 .map(i->i.getCount()*i.getWeight())
                 .reduce(Double::sum)
-                .orElseThrow();
+                .orElse(0.0);
     }
 
     private void checkOverload() {
-        overloaded = getLoadFactor() > MAX_LOAD;
+        overloaded = getTotalWeight() > MAX_LOAD;
     }
 
     public void addHealth(int heal) {
