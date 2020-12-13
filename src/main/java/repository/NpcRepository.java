@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NpcRepository {
-    private List<Enemy> enemies = new ArrayList<>();
+    private final List<Enemy> enemies = new ArrayList<>();
 
     public NpcRepository() {
         populateRepository();

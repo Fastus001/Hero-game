@@ -22,7 +22,7 @@ import java.util.Scanner;
 
 public class Game {
     private final char[][] map = new char[10][30];
-    private Location h;
+    private final Location h;
     private final NpcRepository npcRepository;
     private Hero hero;
     private int victories = 0;
@@ -46,7 +46,8 @@ public class Game {
         char ch = map[row][col];
         switch (ch){
             case '_':break;
-            case '~': hero.getDamage(1);break;
+            case '~': hero.getDamage(1);
+                System.out.println("Hero received 1 dmg due to deep river");break;
             case '.': hero.getDamage(5);break;
             case '?': hero.addNewItem(new Weapon("Scythe of Death",50, 150));break;
             case 'E': Fight fight = new Fight(hero, npcRepository.getRandomEnemies());
@@ -108,7 +109,8 @@ public class Game {
                 } catch (InvalidTypeException | NoEmptySlotException e) {
                     e.printStackTrace();
                 }
-            } ;playerMove();break;
+            }
+                playerMove();break;
             case "eat": hero.showEquipment();
                 System.out.println("Give item number to consume to regain HP.");
                 var in = new Scanner(System.in);
@@ -142,20 +144,20 @@ public class Game {
         repository.showList();
         Scanner in = new Scanner(System.in);
         System.out.println("Write hero name you want to choose.");
-        String name = in.next();
-        Hero hero = repository.chooseHero(name);
+        Hero hero = repository.chooseHero(in.next());
         if(hero !=null){
             this.hero = hero;
+        }else{
+            chooseHero();
         }
     }
 
     public void showHelp(){
-        var sb = new StringBuilder();
-        sb.append("HELP\n").append("type one of WASD to move character\n")
-                .append("type inventory - to show equipment\n")
-                .append("type eat - to consume food, (if hero have it)\n")
-                .append("type weapon - to assign weapon if your charachter is warrior\n")
-                .append("type help - to show this help text again.\n");
+        String sb = "HELP\n" + "type one of WASD to move character\n" +
+                "type inventory - to show equipment\n" +
+                "type eat - to consume food, (if hero have it)\n" +
+                "type weapon - to assign weapon if your charachter is warrior\n" +
+                "type help - to show this help text again.\n";
         System.out.println(sb);
     }
 

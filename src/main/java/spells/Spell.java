@@ -2,7 +2,7 @@ package spells;
 
 import java.util.Objects;
 
-public class Spell implements Comparable{
+public class Spell implements Comparable<Spell>{
     private final String name;
     private final int addDamage;
     private final int addHealth;
@@ -59,8 +59,7 @@ public class Spell implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        Spell spell = (Spell) o;
+    public int compareTo(Spell spell) {
         return this.name.compareTo(spell.name);
     }
 }

@@ -1,8 +1,8 @@
 package inventory;
 
 public class PricedItem {
-    private InventoryObject item;
-    private int price;
+    private final InventoryObject item;
+    private final int price;
 
     public PricedItem(InventoryObject item, int price) {
         this.item = item;

@@ -3,7 +3,7 @@ package npc;
 import inventory.Weapon;
 
 public class Bandit extends  Enemy{
-    private Weapon weapon;
+    private final Weapon weapon;
 
     public Bandit(String name, int health, int damage, Weapon weapon) {
         super(name, health, damage);

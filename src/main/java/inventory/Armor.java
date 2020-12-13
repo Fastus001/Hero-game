@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class Armor {
-    private Map<BodyPart,ArmorPart> armor = new HashMap<>();
-    private int damageResistance = 0;
+    private final Map<BodyPart,ArmorPart> armor = new HashMap<>();
 
     public ArmorPart equipArmorAdvanced(ArmorPart toAssign){
         return armor.put(toAssign.getBodyPart(), toAssign);

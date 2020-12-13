@@ -1,7 +1,7 @@
 package inventory;
 
 public class Food extends InventoryObject{
-    private int healthPoints;
+    private final int healthPoints;
 
     public Food(String name, double weight, int count, int healthPoints) {
         super(name, weight, count);

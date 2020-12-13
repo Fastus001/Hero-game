@@ -5,7 +5,7 @@ import utils.Fightable;
 public abstract class Enemy implements Fightable {
     private String name;
     private int health;
-    private int damage;
+    private final int damage;
 
     public Enemy(String name, int health, int damage) {
         this.name = name;

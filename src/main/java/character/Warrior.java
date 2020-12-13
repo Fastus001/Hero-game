@@ -10,16 +10,12 @@ import utils.Race;
 
 public class Warrior extends Hero {
     private Weapon weapon;
-    private Armor armor;
+    private final Armor armor;
 
     public Warrior(String name, Race race, Weapon weapon, Armor armor) {
         super(name, race);
         this.weapon = weapon;
         this.armor = armor;
-    }
-
-    public Warrior(String name, Race race) {
-        super(name, race);
     }
 
     public void assignWeapon(int index) throws InvalidTypeException, NoEmptySlotException {
